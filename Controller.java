@@ -116,12 +116,7 @@ public class Controller {
     @FXML
     //attempting data retrieval on button press
     void retrieveNotes(ActionEvent event) {
-        String name = dropDownDrivers.getValue();
-        Driver temp = getFromName(name);
-        if(temp== null){
-           return;
-        }
-        String code = temp.driverCode;
+        databaseReatrieve();
 
 
     }
@@ -141,52 +136,73 @@ public class Controller {
 
 
     void databaseCreate(){
-        JSONArray drivers = (JSONArray) ErgastAPI.getDriverInfo();
-        for( int i = 0; i< drivers.size(); i++){
-            JSONObject temp = (JSONObject)drivers.get(i);
 
-            try {
-                Connection conn = DriverManager.getConnection(myUrl, username, password);
+        try {
+            Connection conn = DriverManager.getConnection(myUrl, username, password);
+            System.out.println("Connection Made!!");
 
-                // mysql insert statement
-                String query = "INSERT INTO racerInfo(driverId, permanentNumber, code, url, givenName," +
-                        "familyName, dateOfBirth, nationality, ScoutingNotes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            // mysql insert statement
+            String query = "INSERT INTO racerInfo(driverId, permanentNumber, code, url, givenName," +
+                    "familyName, dateOfBirth, nationality, ScoutingNotes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                // create the mysql prepared statement
-                try (PreparedStatement preparedStmt = conn.prepareStatement(query)) {
-                    preparedStmt.setString(1, driverIdTXT.getText());
-                    preparedStmt.setString(2, driverNumberTXT.getText());
-                    preparedStmt.setString(3, driverCodeTXT.getText());
-                    preparedStmt.setString(4, driverUrlTXT.getText());
-                    preparedStmt.setString(5, FnameTXT.getText());
-                    preparedStmt.setString(6, LnameTXT.getText());
-                    preparedStmt.setString(7, driverDobTXT.getText());
-                    preparedStmt.setString(8, nationalityTXT.getText());
-                    preparedStmt.setString(9, scoutingNotes.getText());
+            // create the mysql prepared statement
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString(1, driverIdTXT.getText());
+            preparedStmt.setString(2, driverNumberTXT.getText());
+            preparedStmt.setString(3, driverCodeTXT.getText());
+            preparedStmt.setString(4, driverUrlTXT.getText());
+            preparedStmt.setString(5, FnameTXT.getText());
+            preparedStmt.setString(6, LnameTXT.getText());
+            preparedStmt.setString(7, driverDobTXT.getText());
+            preparedStmt.setString(8, nationalityTXT.getText());
+            preparedStmt.setString(9, scoutingNotes.getText());
 
 
-                    // execute the preparedstatement
-                    preparedStmt.execute();
-                    System.out.println("Record Created");
-                }
-
-
-                //Closing connection
-                conn.close();
-                System.out.println("Connection closed.");
-            }catch (Exception e){
-                System.err.println("Got an exception!");
-                System.err.println(e.getMessage());
+            // execute the preparedstatement
+            preparedStmt.execute();
+            System.out.println("Record Created");
 
 
 
+            //Closing connection
+            conn.close();
+            System.out.println("Connection closed.");
+        }catch (Exception e){
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
 
-
-
-
-            }
         }
+
     }
+
+    void databaseReatrieve () {
+
+        try{
+
+            Connection conn1 = DriverManager.getConnection(myUrl, username, password);
+            System.out.println("Connection Made!!");
+
+
+            //mySql retreival statement
+
+            String retrieve = "SELECT  ScoutingNotes FROM racerInfo WHERE driverId = driverId";
+
+            Statement driverInfo_stmt = null;
+
+            driverInfo_stmt = conn1.createStatement();
+
+            driverInfo_stmt.executeQuery(retrieve);
+
+
+             conn1.close();
+            System.out.println("Connection Closed.");
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+
+    }
+
 
     private void fillTable(Connection conn) {
     }
