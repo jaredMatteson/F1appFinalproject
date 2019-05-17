@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="735.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Pane prefHeight="735.0" prefWidth="145.0" style="-fx-background-color: #000000;">
+         <children>
+            <ImageView fx:id="app_logo" fitHeight="141.0" fitWidth="118.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images.png" />
+               </image>
+            </ImageView>
+            <Text fill="#f8f5f5" layoutX="29.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jared Matteson" wrappingWidth="101.6708984375">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#f8f4f4" layoutX="33.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CWEBB2010" />
+         </children>
+      </Pane>
+      <Text layoutX="163.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Pick a Driver:" textAlignment="CENTER" />
+      <TextField fx:id="scoutingNotes" layoutX="153.0" layoutY="529.0" prefHeight="175.0" prefWidth="337.0" />
+      <ComboBox fx:id="dropDownDrivers" layoutX="313.0" layoutY="22.0" onAction="#driverSelected" prefHeight="33.0" prefWidth="248.0" />
+      <Text layoutX="153.0" layoutY="509.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scouting Notes:" />
+      <TextField fx:id="FnameTXT" layoutX="192.0" layoutY="118.0" prefHeight="31.0" prefWidth="170.0" />
+      <TextField fx:id="nationalityTXT" layoutX="196.0" layoutY="368.0" prefHeight="31.0" prefWidth="195.0" />
+      <TextField fx:id="driverIdTXT" layoutX="501.0" layoutY="247.0" prefHeight="31.0" prefWidth="195.0" />
+      <TextField fx:id="driverDobTXT" layoutX="719.0" layoutY="118.0" prefHeight="31.0" prefWidth="118.0" />
+      <TextField fx:id="driverNumberTXT" layoutX="198.0" layoutY="247.0" prefHeight="31.0" prefWidth="105.0" />
+      <TextField fx:id="LnameTXT" layoutX="463.0" layoutY="118.0" prefHeight="31.0" prefWidth="180.0" />
+      <TextField fx:id="driverCodeTXT" layoutX="372.0" layoutY="247.0" prefHeight="31.0" prefWidth="84.0" />
+      <TextField fx:id="driverUrlTXT" layoutX="458.0" layoutY="368.0" prefHeight="31.0" prefWidth="337.0" />
+      <Text layoutX="215.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+      <Text layoutX="372.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver Code" />
+      <Text layoutX="201.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" />
+      <Text layoutX="483.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+      <Text layoutX="510.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver ID" />
+      <Text layoutX="205.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+      <Text layoutX="719.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth" />
+      <Text layoutX="464.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver Webpage" />
+      <Button fx:id="savSctRpt" layoutX="521.0" layoutY="673.0" mnemonicParsing="false" onAction="#saveNotes" prefHeight="31.0" prefWidth="170.0" text="Save Scouting Report" />
+      <Button fx:id="retSctRpt" layoutX="714.0" layoutY="673.0" mnemonicParsing="false" onAction="#retrieveNotes" prefHeight="31.0" prefWidth="195.0" text="Retrieve Scouting Report" />
+   </children>
+</AnchorPane>
